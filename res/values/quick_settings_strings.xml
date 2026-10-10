@@ -4,6 +4,12 @@
     <!-- Status bar entry in Settings > System -->
     <string name="status_bar_settings_summary">Status icons, clock, quick settings</string>
 
+    <!-- Brightness slider options -->
+    <string name="status_bar_brightness_slider_always_title">Brightness slider always visible</string>
+    <string name="status_bar_brightness_slider_always_summary">Also show the slider when quick settings are collapsed</string>
+    <string name="status_bar_brightness_slider_bottom_title">Brightness slider under quick settings</string>
+    <string name="status_bar_brightness_slider_bottom_summary">Place the slider below the tiles</string>
+
     <!-- Quick Settings page -->
     <string name="qs_settings_title">Quick Settings</string>
     <string name="qs_settings_summary">Tile layout, labels and animation</string>

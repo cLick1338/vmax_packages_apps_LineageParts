@@ -15,6 +15,7 @@ import android.view.View;
 
 import androidx.preference.Preference;
 import androidx.preference.PreferenceCategory;
+import androidx.preference.TwoStatePreference;
 
 import com.android.settingslib.fuelgauge.BatteryUtils;
 
@@ -47,12 +48,19 @@ public class StatusBarSettings extends SettingsPreferenceFragment
 
     private static final String NETWORK_TRAFFIC_SETTINGS = "network_traffic_settings";
 
+    private static final String BRIGHTNESS_SLIDER_ALWAYS = "qs_brightness_slider_always";
+    private static final int BRIGHTNESS_SLIDER_HIDDEN = 0;
+    private static final int BRIGHTNESS_SLIDER_EXPANDED = 1;
+    private static final int BRIGHTNESS_SLIDER_ALWAYS_SHOWN = 2;
+
     private LineageSystemSettingListPreference mQuickPulldown;
     private LineageSystemSettingListPreference mStatusBarClock;
     private LineageSystemSettingListPreference mStatusBarAmPm;
     private LineageSystemSettingListPreference mStatusBarBatteryShowPercent;
 
     private PreferenceCategory mStatusBarBatteryCategory;
+    private TwoStatePreference mBrightnessSlider;
+    private TwoStatePreference mBrightnessSliderAlways;
     private PreferenceCategory mStatusBarClockCategory;
 
     private boolean mBatteryPresent;
@@ -61,6 +69,16 @@ public class StatusBarSettings extends SettingsPreferenceFragment
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.status_bar_settings);
+
+        // The two switches share one tri-state setting.
+        final int brightnessMode = LineageSettings.Secure.getInt(getContentResolver(),
+                LineageSettings.Secure.QS_SHOW_BRIGHTNESS_SLIDER, BRIGHTNESS_SLIDER_EXPANDED);
+        mBrightnessSlider = findPreference(LineageSettings.Secure.QS_SHOW_BRIGHTNESS_SLIDER);
+        mBrightnessSlider.setChecked(brightnessMode != BRIGHTNESS_SLIDER_HIDDEN);
+        mBrightnessSlider.setOnPreferenceChangeListener(this);
+        mBrightnessSliderAlways = findPreference(BRIGHTNESS_SLIDER_ALWAYS);
+        mBrightnessSliderAlways.setChecked(brightnessMode == BRIGHTNESS_SLIDER_ALWAYS_SHOWN);
+        mBrightnessSliderAlways.setOnPreferenceChangeListener(this);
 
         mStatusBarAmPm = findPreference(STATUS_BAR_AM_PM);
         mStatusBarClock = findPreference(STATUS_BAR_CLOCK_STYLE);
@@ -137,6 +155,18 @@ public class StatusBarSettings extends SettingsPreferenceFragment
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
+        if (preference == mBrightnessSlider || preference == mBrightnessSliderAlways) {
+            final boolean shown = preference == mBrightnessSlider
+                    ? (Boolean) newValue : mBrightnessSlider.isChecked();
+            final boolean always = preference == mBrightnessSliderAlways
+                    ? (Boolean) newValue : mBrightnessSliderAlways.isChecked();
+            LineageSettings.Secure.putInt(getContentResolver(),
+                    LineageSettings.Secure.QS_SHOW_BRIGHTNESS_SLIDER,
+                    !shown ? BRIGHTNESS_SLIDER_HIDDEN
+                            : always ? BRIGHTNESS_SLIDER_ALWAYS_SHOWN
+                            : BRIGHTNESS_SLIDER_EXPANDED);
+            return true;
+        }
         int value = Integer.parseInt((String) newValue);
         String key = preference.getKey();
         switch (key) {
