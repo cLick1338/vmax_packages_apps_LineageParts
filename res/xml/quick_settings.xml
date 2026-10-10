@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Vmax -->
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:title="@string/qs_settings_title">
+
+    <PreferenceCategory
+        android:key="qs_layout_portrait"
+        android:title="@string/qs_layout_portrait_title">
+
+        <SeekBarPreference
+            android:key="qs_layout_columns"
+            android:title="@string/qs_layout_columns_title"
+            android:persistent="false"
+            android:max="6"
+            app:min="2"
+            app:showSeekBarValue="true" />
+
+        <SeekBarPreference
+            android:key="qs_layout_rows"
+            android:title="@string/qs_layout_rows_title"
+            android:summary="@string/qs_layout_rows_summary"
+            android:persistent="false"
+            android:max="6"
+            app:min="1"
+            app:showSeekBarValue="true" />
+
+        <SeekBarPreference
+            android:key="qqs_layout_rows"
+            android:title="@string/qqs_layout_rows_title"
+            android:summary="@string/qqs_layout_rows_summary"
+            android:persistent="false"
+            android:max="3"
+            app:min="1"
+            app:showSeekBarValue="true" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="qs_layout_landscape"
+        android:title="@string/qs_layout_landscape_title">
+
+        <SeekBarPreference
+            android:key="qs_layout_columns_landscape"
+            android:title="@string/qs_layout_columns_title"
+            android:persistent="false"
+            android:max="8"
+            app:min="2"
+            app:showSeekBarValue="true" />
+
+        <SeekBarPreference
+            android:key="qs_layout_rows_landscape"
+            android:title="@string/qs_layout_rows_title"
+            android:summary="@string/qs_layout_rows_summary"
+            android:persistent="false"
+            android:max="4"
+            app:min="1"
+            app:showSeekBarValue="true" />
+
+        <SeekBarPreference
+            android:key="qqs_layout_rows_landscape"
+            android:title="@string/qqs_layout_rows_title"
+            android:summary="@string/qqs_layout_rows_summary"
+            android:persistent="false"
+            android:max="2"
+            app:min="1"
+            app:showSeekBarValue="true" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="qs_tiles"
+        android:title="@string/qs_tiles_category">
+
+        <lineageos.preference.SystemSettingSwitchPreference
+            android:key="qs_tile_vertical_layout"
+            android:title="@string/qs_tile_vertical_layout_title"
+            android:summary="@string/qs_tile_vertical_layout_summary"
+            android:defaultValue="false" />
+
+        <lineageos.preference.SystemSettingSwitchPreference
+            android:key="qs_tile_label_hide"
+            android:title="@string/qs_tile_label_hide_title"
+            android:summary="@string/qs_tile_label_hide_summary"
+            android:defaultValue="false" />
+
+        <SeekBarPreference
+            android:key="qs_tile_label_size"
+            android:title="@string/qs_tile_label_size_title"
+            android:persistent="false"
+            android:max="18"
+            app:min="10" />
+
+        <lineageos.preference.SystemSettingSwitchPreference
+            android:key="quick_settings_vibrate"
+            android:title="@string/qs_tile_vibrate_title"
+            android:summary="@string/qs_tile_vibrate_summary"
+            android:defaultValue="false" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="qs_tile_animation"
+        android:title="@string/qs_tile_animation_category">
+
+        <ListPreference
+            android:key="qs_tile_animation_style"
+            android:title="@string/qs_tile_animation_style_title"
+            android:entries="@array/qs_tile_animation_style_entries"
+            android:entryValues="@array/qs_tile_animation_style_values"
+            android:summary="%s"
+            android:persistent="false" />
+
+        <SeekBarPreference
+            android:key="qs_tile_animation_duration"
+            android:title="@string/qs_tile_animation_duration_title"
+            android:persistent="false"
+            android:max="3000"
+            app:min="100"
+            app:seekBarIncrement="100" />
+
+        <ListPreference
+            android:key="qs_tile_animation_interpolator"
+            android:title="@string/qs_tile_animation_interpolator_title"
+            android:entries="@array/qs_tile_animation_interpolator_entries"
+            android:entryValues="@array/qs_tile_animation_interpolator_values"
+            android:summary="%s"
+            android:persistent="false" />
+    </PreferenceCategory>
+
+    <Preference
+        android:key="qs_settings_reset"
+        android:title="@string/qs_settings_reset_title"
+        android:summary="@string/qs_settings_reset_summary" />
+
+</PreferenceScreen>

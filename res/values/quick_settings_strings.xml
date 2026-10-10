@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Vmax -->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- Status bar entry in Settings > System -->
+    <string name="status_bar_settings_summary">Status icons, clock, quick settings</string>
+
+    <!-- Quick Settings page -->
+    <string name="qs_settings_title">Quick Settings</string>
+    <string name="qs_settings_summary">Tile layout, labels and animation</string>
+    <string name="qs_layout_portrait_title">Portrait layout</string>
+    <string name="qs_layout_landscape_title">Landscape layout</string>
+    <string name="qs_layout_columns_title">Columns</string>
+    <string name="qs_layout_rows_title">Rows</string>
+    <string name="qs_layout_rows_summary">Rows per page when expanded</string>
+    <string name="qqs_layout_rows_title">Collapsed rows</string>
+    <string name="qqs_layout_rows_summary">Rows shown before expanding</string>
+
+    <string name="qs_tiles_category">Tiles</string>
+    <string name="qs_tile_vertical_layout_title">Vertical layout</string>
+    <string name="qs_tile_vertical_layout_summary">Show the label below the icon</string>
+    <string name="qs_tile_label_hide_title">Hide labels</string>
+    <string name="qs_tile_label_hide_summary">Show icons only</string>
+    <string name="qs_tile_label_size_title">Label size</string>
+    <string name="qs_tile_label_size_value"><xliff:g id="size">%1$d</xliff:g> sp</string>
+    <string name="qs_tile_vibrate_title">Vibrate on tap</string>
+    <string name="qs_tile_vibrate_summary">Haptic feedback when tapping a tile</string>
+
+    <string name="qs_tile_animation_category">Tile animation</string>
+    <string name="qs_tile_animation_style_title">Animation</string>
+    <string name="qs_tile_animation_duration_title">Duration</string>
+    <string name="qs_tile_animation_duration_value"><xliff:g id="duration">%1$d</xliff:g> ms</string>
+    <string name="qs_tile_animation_interpolator_title">Easing</string>
+
+    <string name="qs_settings_reset_title">Reset to defaults</string>
+    <string name="qs_settings_reset_summary">Restore the stock tile layout and appearance</string>
+
+    <string-array name="qs_tile_animation_style_entries">
+        <item>None</item>
+        <item>Flip</item>
+        <item>Rotate</item>
+    </string-array>
+    <string-array name="qs_tile_animation_style_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    <string-array name="qs_tile_animation_interpolator_entries">
+        <item>Linear</item>
+        <item>Accelerate</item>
+        <item>Decelerate</item>
+        <item>Accelerate and decelerate</item>
+        <item>Bounce</item>
+        <item>Overshoot</item>
+        <item>Anticipate</item>
+    </string-array>
+    <string-array name="qs_tile_animation_interpolator_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+    </string-array>
+</resources>

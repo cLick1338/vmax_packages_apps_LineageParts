@@ -213,7 +213,7 @@
                 android:value="primary_profile_only" />
             <meta-data
                 android:name="com.android.settings.summary"
-                android:resource="@string/summary_empty" />
+                android:resource="@string/status_bar_settings_summary" />
         </activity-alias>
 
         <!-- Trust interface (Privacy category) -->
