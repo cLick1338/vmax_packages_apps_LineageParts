@@ -13,10 +13,10 @@
         android:layout="@layout/color_mode_preview"
         android:selectable="false" />
 
-    <!-- Color profile -->
+    <!-- Color space -->
     <ListPreference
             android:key="live_display_color_profile"
-            android:title="@string/live_display_color_profile_title"
+            android:title="@string/live_display_color_space_title"
             android:persistent="false" />
 
     <ListPreference

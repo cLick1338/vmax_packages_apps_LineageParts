@@ -79,9 +79,6 @@ public class LiveDisplaySettings extends SettingsPreferenceFragment implements S
     private static final String COLOR_PROFILE_TITLE =
             KEY_LIVE_DISPLAY_COLOR_PROFILE + "_%s_title";
 
-    private static final String COLOR_PROFILE_SUMMARY =
-            KEY_LIVE_DISPLAY_COLOR_PROFILE + "_%s_summary";
-
     private final Uri DISPLAY_TEMPERATURE_DAY_URI =
             LineageSettings.System.getUriFor(LineageSettings.System.DISPLAY_TEMPERATURE_DAY);
     private final Uri DISPLAY_TEMPERATURE_NIGHT_URI =
@@ -97,7 +94,6 @@ public class LiveDisplaySettings extends SettingsPreferenceFragment implements S
     private DisplayTemperature mDisplayTemperature;
 
     private ListPreference mColorProfile;
-    private String[] mColorProfileSummaries;
 
     private String[] mModeValues;
     private String[] mModeSummaries;
@@ -271,19 +267,10 @@ public class LiveDisplaySettings extends SettingsPreferenceFragment implements S
         int curId = -1;
         String[] entries = new String[modes.length];
         String[] values = new String[modes.length];
-        mColorProfileSummaries = new String[modes.length];
         for (int i = 0; i < modes.length; i++) {
             values[i] = String.valueOf(modes[i].id);
             entries[i] = ResourceUtils.getLocalizedString(
                     getResources(), modes[i].name, COLOR_PROFILE_TITLE);
-
-            // Populate summary
-            String summary = ResourceUtils.getLocalizedString(
-                    getResources(), modes[i].name, COLOR_PROFILE_SUMMARY);
-            if (summary != null) {
-                summary = String.format("%s - %s", entries[i], summary);
-            }
-            mColorProfileSummaries[i] = summary;
 
             if (cur != null && modes[i].id == cur.id) {
                 curId = cur.id;
@@ -313,13 +300,13 @@ public class LiveDisplaySettings extends SettingsPreferenceFragment implements S
 
         int idx = mColorProfile.findIndexOfValue(value);
         if (idx < 0) {
-            Log.e(TAG, "No summary resource found for profile " + value);
+            Log.e(TAG, "No entry found for color space " + value);
             mColorProfile.setSummary(null);
             return;
         }
 
         mColorProfile.setValue(value);
-        mColorProfile.setSummary(mColorProfileSummaries[idx]);
+        mColorProfile.setSummary(mColorProfile.getEntries()[idx]);
     }
 
     private void updateModeSummary() {
@@ -438,7 +425,7 @@ public class LiveDisplaySettings extends SettingsPreferenceFragment implements S
             final LiveDisplayConfig config = LiveDisplayManager.getInstance(context).getConfig();
             final Set<String> result = new ArraySet<>();
 
-            // Add keywords for supported color profiles
+            // Add keywords for supported color spaces
             if (config.hasFeature(FEATURE_DISPLAY_MODES)) {
                 DisplayMode[] modes = LineageHardwareManager.getInstance(context).getDisplayModes();
                 if (modes != null && modes.length > 0) {
@@ -451,7 +438,7 @@ public class LiveDisplaySettings extends SettingsPreferenceFragment implements S
             final SearchIndexableRaw raw = new SearchIndexableRaw(context);
             raw.entries = TextUtils.join(" ", result);
             raw.key = KEY_LIVE_DISPLAY_COLOR_PROFILE;
-            raw.title = context.getString(R.string.live_display_color_profile_title);
+            raw.title = context.getString(R.string.live_display_color_space_title);
             raw.rank = 2;
             return Collections.singletonList(raw);
         }

@@ -14,7 +14,7 @@ public class ResourceUtils {
     public static String getLocalizedString(final Resources res,
                                             final String stringName,
                                             final String stringFormat) {
-        final String name = stringName.toLowerCase().replace(" ", "_");
+        final String name = stringName.toLowerCase().replace(" ", "_").replace("-", "_");
         final String nameRes = String.format(stringFormat, name);
         return getStringForResourceName(res, nameRes, stringName);
     }
