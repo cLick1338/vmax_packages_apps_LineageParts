@@ -139,14 +139,8 @@ public class LiveDisplaySettings extends SettingsPreferenceFragment implements S
             removeIdx = ArrayUtils.appendInt(removeIdx,
                     ArrayUtils.indexOf(mModeValues, String.valueOf(MODE_OUTDOOR)));
         } else if (isNightDisplayAvailable) {
-            // Vmax: with Night Light the modes only control the sunlight boost
             final int autoIdx = ArrayUtils.indexOf(mModeValues, String.valueOf(MODE_AUTO));
-            final int offIdx = ArrayUtils.indexOf(mModeValues, String.valueOf(MODE_OFF));
-            final int outdoorIdx = ArrayUtils.indexOf(mModeValues, String.valueOf(MODE_OUTDOOR));
-            mModeSummaries[autoIdx] = res.getString(R.string.live_display_sunlight_auto_summary);
-            mModeSummaries[offIdx] = res.getString(R.string.live_display_sunlight_off_summary);
-            modeEntries[outdoorIdx] = res.getString(R.string.live_display_sunlight_always);
-            mModeSummaries[outdoorIdx] = res.getString(R.string.live_display_sunlight_always_summary);
+            mModeSummaries[autoIdx] = res.getString(R.string.live_display_outdoor_mode_summary);
         }
 
         // Remove night display on HWC2
