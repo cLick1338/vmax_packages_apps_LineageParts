@@ -562,6 +562,7 @@
     <string name="preview_version_title">Version</string>
     <string name="preview_country_title">Country</string>
     <string name="preview_carrier_title">Carrier</string>
+    <string name="preview_raw_title">Data sent (JSON)</string>
     <string name="stats_collection_title">Stats collection</string>
     <string name="stats_collection_summary">Allow installation metrics and device statistics to be collected</string>
 

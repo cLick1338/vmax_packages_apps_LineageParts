@@ -7,6 +7,9 @@
 package org.lineageos.lineageparts.lineagestats;
 
 import android.content.Context;
+import android.graphics.Point;
+import android.hardware.display.DisplayManager;
+import android.view.Display;
 import android.os.Build;
 import android.os.SystemProperties;
 import android.provider.Settings;
@@ -47,6 +50,14 @@ public class Utilities {
             carrierId = "0";
         }
         return carrierId;
+    }
+
+    // current size in portrait order, so rotation does not matter
+    public static String getResolution(Context context) {
+        Point size = new Point();
+        context.getSystemService(DisplayManager.class).getDisplay(Display.DEFAULT_DISPLAY)
+                .getRealSize(size);
+        return Math.min(size.x, size.y) + "x" + Math.max(size.x, size.y);
     }
 
     public static String getCountryCode(Context context) {

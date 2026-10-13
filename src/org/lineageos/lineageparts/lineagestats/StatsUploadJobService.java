@@ -45,8 +45,7 @@ public class StatsUploadJobService extends JobService {
     public static final String KEY_DEVICE_NAME = "deviceName";
     public static final String KEY_VERSION = "version";
     public static final String KEY_COUNTRY = "country";
-    public static final String KEY_CARRIER = "carrier";
-    public static final String KEY_CARRIER_ID = "carrierId";
+    public static final String KEY_RESOLUTION = "resolution";
     public static final String KEY_TIMESTAMP = "timeStamp";
 
     private final Map<JobParameters, StatsUploadTask> mCurrentJobs
@@ -103,8 +102,7 @@ public class StatsUploadJobService extends JobService {
                 String deviceName = extras.getString(KEY_DEVICE_NAME);
                 String deviceVersion = extras.getString(KEY_VERSION);
                 String deviceCountry = extras.getString(KEY_COUNTRY);
-                String deviceCarrier = extras.getString(KEY_CARRIER);
-                String deviceCarrierId = extras.getString(KEY_CARRIER_ID);
+                String deviceResolution = extras.getString(KEY_RESOLUTION);
 
                 boolean success = false;
                 int jobType = extras.getInt(KEY_JOB_TYPE, -1);
@@ -113,8 +111,8 @@ public class StatsUploadJobService extends JobService {
                         case JOB_TYPE_LINEAGEORG:
                             try {
                                 JSONObject json = buildStatsRequest(deviceId, deviceName,
-                                        deviceVersion, deviceCountry, deviceCarrier,
-                                        deviceCarrierId);
+                                        deviceVersion, deviceCountry,
+                                        deviceResolution);
                                 success = uploadToLineage(json);
                             } catch (IOException | JSONException e) {
                                 Log.e(TAG, "Could not upload stats checkin to community server", e);
@@ -141,16 +139,16 @@ public class StatsUploadJobService extends JobService {
         }
     }
 
-    private JSONObject buildStatsRequest(String deviceId, String deviceName, String deviceVersion,
-                                         String deviceCountry, String deviceCarrier,
-                                         String deviceCarrierId) throws JSONException {
+    // shared with the preview screen so it shows exactly what is sent
+    static JSONObject buildStatsRequest(String deviceId, String deviceName, String deviceVersion,
+                                         String deviceCountry,
+                                         String deviceResolution) throws JSONException {
         JSONObject request = new JSONObject();
         request.put("device_hash", deviceId);
         request.put("device_name", deviceName);
         request.put("device_version", deviceVersion);
         request.put("device_country", deviceCountry);
-        request.put("device_carrier", deviceCarrier);
-        request.put("device_carrier_id", deviceCarrierId);
+        request.put("device_diag", new JSONObject().put("resolution", deviceResolution));
         return request;
     }
 

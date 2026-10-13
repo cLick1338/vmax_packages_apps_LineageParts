@@ -33,8 +33,7 @@ public class ReportingService extends IntentService {
         String deviceName = Utilities.getDevice();
         String deviceVersion = Utilities.getModVersion();
         String deviceCountry = Utilities.getCountryCode(context);
-        String deviceCarrier = Utilities.getCarrier(context);
-        String deviceCarrierId = Utilities.getCarrierId(context);
+        String deviceResolution = Utilities.getResolution(context);
 
         final int lineageOldJobId = AnonymousStats.getLastJobId(context);
         final int lineageOrgJobId = AnonymousStats.getNextJobId(context);
@@ -46,8 +45,7 @@ public class ReportingService extends IntentService {
         lineageBundle.putString(StatsUploadJobService.KEY_UNIQUE_ID, deviceId);
         lineageBundle.putString(StatsUploadJobService.KEY_VERSION, deviceVersion);
         lineageBundle.putString(StatsUploadJobService.KEY_COUNTRY, deviceCountry);
-        lineageBundle.putString(StatsUploadJobService.KEY_CARRIER, deviceCarrier);
-        lineageBundle.putString(StatsUploadJobService.KEY_CARRIER_ID, deviceCarrierId);
+        lineageBundle.putString(StatsUploadJobService.KEY_RESOLUTION, deviceResolution);
         lineageBundle.putLong(StatsUploadJobService.KEY_TIMESTAMP, System.currentTimeMillis());
 
         // set job types

@@ -11,15 +11,12 @@ import android.os.Bundle;
 
 import androidx.preference.PreferenceScreen;
 
+import org.json.JSONException;
 import org.lineageos.lineageparts.R;
 import org.lineageos.lineageparts.SettingsPreferenceFragment;
 
 public class PreviewData extends SettingsPreferenceFragment {
-    private static final String UNIQUE_ID = "preview_id";
-    private static final String DEVICE = "preview_device";
-    private static final String VERSION = "preview_version";
-    private static final String COUNTRY = "preview_country";
-    private static final String CARRIER = "preview_carrier";
+    private static final String RAW = "preview_raw";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -30,10 +27,14 @@ public class PreviewData extends SettingsPreferenceFragment {
         final PreferenceScreen prefSet = getPreferenceScreen();
         final Context context = requireActivity();
 
-        prefSet.findPreference(UNIQUE_ID).setSummary(Utilities.getUniqueID(context));
-        prefSet.findPreference(DEVICE).setSummary(Utilities.getDevice());
-        prefSet.findPreference(VERSION).setSummary(Utilities.getModVersion());
-        prefSet.findPreference(COUNTRY).setSummary(Utilities.getCountryCode(context));
-        prefSet.findPreference(CARRIER).setSummary(Utilities.getCarrier(context));
+        // same builder as the upload, so this is the exact request body
+        try {
+            prefSet.findPreference(RAW).setSummary(StatsUploadJobService.buildStatsRequest(
+                    Utilities.getUniqueID(context), Utilities.getDevice(),
+                    Utilities.getModVersion(), Utilities.getCountryCode(context),
+                    Utilities.getResolution(context)).toString(2));
+        } catch (JSONException e) {
+            prefSet.findPreference(RAW).setSummary(e.toString());
+        }
     }
 }
