@@ -1,0 +1,11 @@
+<!-- Vmax -->
+<resources>
+    <!-- No translations on purpose: every locale, including all en-* variants, uses these -->
+    <string name="live_display_summary_manual" translatable="false">Sunlight boost, colour calibration, picture adjustment and reading mode</string>
+    <string name="live_display_sunlight_auto_summary" translatable="false">Boost panel brightness in direct sunlight</string>
+    <string name="live_display_sunlight_off_summary" translatable="false">No sunlight boost</string>
+    <string name="live_display_sunlight_always" translatable="false">Always boosted</string>
+    <string name="live_display_sunlight_always_summary" translatable="false">Panel brightness boost always on</string>
+    <string name="live_display_panel_hdr_title" translatable="false">Panel HDR effect</string>
+    <string name="live_display_panel_hdr_summary" translatable="false">Automatic image enhancement depending on displayed content</string>
+</resources>

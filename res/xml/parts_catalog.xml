@@ -40,7 +40,7 @@
 
     <part android:key="livedisplay"
           android:title="@*lineageos.platform:string/live_display_title"
-          android:summary="@string/live_display_summary"
+          android:summary="@string/live_display_summary_manual"
           android:fragment="org.lineageos.lineageparts.livedisplay.LiveDisplaySettings"
           lineage:xmlRes="@xml/livedisplay" />
 
