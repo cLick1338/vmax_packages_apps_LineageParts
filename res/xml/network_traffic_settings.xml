@@ -22,7 +22,7 @@
         android:title="@string/network_traffic_position_title" />
 
     <lineageos.preference.LineageSecureSettingSwitchPreference
-        android:defaultValue="false"
+        android:defaultValue="true"
         android:key="network_traffic_autohide"
         android:summary="@string/network_traffic_autohide_summary"
         android:title="@string/network_traffic_autohide" />

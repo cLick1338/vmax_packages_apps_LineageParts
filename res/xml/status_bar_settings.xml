@@ -121,7 +121,7 @@
             android:title="@string/status_bar_brightness_slider_bottom_title"
             android:summary="@string/status_bar_brightness_slider_bottom_summary"
             android:dependency="qs_show_brightness_slider"
-            android:defaultValue="false" />
+            android:defaultValue="true" />
 
         <lineageos.preference.LineageSecureSettingSwitchPreference
             android:key="qs_show_auto_brightness"
