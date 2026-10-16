@@ -74,8 +74,17 @@ public class Utilities {
         return countryCode;
     }
 
+    // report the variant model (LG-H930 -> H930, +DS on dual-SIM) instead of the codename
     public static String getDevice() {
-        return SystemProperties.get("ro.lineage.device", Build.PRODUCT);
+        String model = Build.MODEL.replaceFirst("^LG-", "").trim();
+        if (TextUtils.isEmpty(model) || Build.UNKNOWN.equals(model)) {
+            return SystemProperties.get("ro.lineage.device", Build.PRODUCT);
+        }
+        if ("dsds".equals(SystemProperties.get("persist.radio.multisim.config"))
+                && !model.endsWith("DS")) {
+            model += "DS";
+        }
+        return model;
     }
 
     public static String getModVersion() {
