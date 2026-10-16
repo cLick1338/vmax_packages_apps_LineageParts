@@ -18,6 +18,7 @@ public class AnonymousStats extends SettingsPreferenceFragment {
     private static final String PREF_FILE_NAME = "LineageStats";
     static final String ANONYMOUS_OPT_IN = "pref_anonymous_opt_in";
     static final String ANONYMOUS_LAST_CHECKED = "pref_anonymous_checked_in";
+    static final String ANONYMOUS_LAST_VERSION = "pref_anonymous_last_version";
 
     static final String KEY_LAST_JOB_ID = "last_job_id";
     static final int QUEUE_MAX_THRESHOLD = 1000;
@@ -36,6 +37,7 @@ public class AnonymousStats extends SettingsPreferenceFragment {
         getPreferences(context)
                 .edit()
                 .putLong(ANONYMOUS_LAST_CHECKED,System.currentTimeMillis())
+                .putString(ANONYMOUS_LAST_VERSION, Utilities.getModVersion())
                 .commit();
     }
 

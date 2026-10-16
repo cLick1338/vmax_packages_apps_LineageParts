@@ -48,6 +48,12 @@ public class ReportingServiceManager extends BroadcastReceiver {
             launchService(context, true); // service will reschedule the next alarm
             return;
         }
+        // report a new build right away instead of at the next daily slot
+        if (!Utilities.getModVersion().equals(
+                prefs.getString(AnonymousStats.ANONYMOUS_LAST_VERSION, null))) {
+            launchService(context, true);
+            return;
+        }
         long millisFromNow = (lastSynced + UPDATE_INTERVAL) - System.currentTimeMillis();
 
         Intent intent = new Intent(ACTION_LAUNCH_SERVICE);
