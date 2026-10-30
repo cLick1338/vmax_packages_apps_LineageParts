@@ -322,6 +322,10 @@ public class ContributorsCloudFragment extends Fragment implements SearchView.On
     public void onStart() {
         super.onStart();
 
+        PartsActivity activity = (PartsActivity) requireActivity();
+        activity.getTopIntro().setText(R.string.contributors_cloud_fragment_subtitle);
+        activity.showTopIntro(true);
+
         Bundle args = getArguments();
         if (args != null) {
             String c = args.getString(PartsActivity.EXTRA_FRAGMENT_ARG_KEY);
@@ -330,6 +334,12 @@ public class ContributorsCloudFragment extends Fragment implements SearchView.On
                 args.remove(PartsActivity.EXTRA_FRAGMENT_ARG_KEY);
             }
         }
+    }
+
+    @Override
+    public void onStop() {
+        ((PartsActivity) requireActivity()).showTopIntro(false);
+        super.onStop();
     }
 
     @Override

@@ -530,6 +530,7 @@
 
     <!-- Contributors cloud activity -->
     <string name="contributors_cloud_fragment_title">Contributors</string>
+    <string name="contributors_cloud_fragment_subtitle" translatable="false">cLick1338</string>
     <string name="contributors_cloud_loading_message">Loading contributors data\u2026</string>
     <string name="contributors_cloud_failed_message">Cannot load contributors data</string>
     <string name="contributor_info_menu">Contributor info</string>
